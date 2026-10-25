@@ -1,0 +1,544 @@
+#root {
+  min-height: 100vh;
+}
+
+/* Dashboard shell, controls, and delivery progress summary. */
+.app-shell {
+  min-height: 100vh;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+  background: #21b982;
+}
+
+.main-content {
+  max-width: 1800px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 34px 22px;
+}
+
+.top-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  padding: 16px 0;
+}
+
+.panel-heading p {
+  margin: 7px 0 0;
+  color: #8a96a7;
+  font-size: 12px;
+}
+
+/* Distinguish primary actions from secondary controls and metric states. */
+.secondary-button,
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 37px;
+  padding: 0 13px;
+  border: 1px solid #e0e6ef;
+  border-radius: 7px;
+  background: #fff;
+  color: #536176;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: transform 150ms, background 150ms;
+}
+
+.secondary-button:hover {
+  background: #f6f8fc;
+}
+
+.primary-button {
+  min-height: 42px;
+  border-color: #315fe8;
+  background: #315fe8;
+  color: #fff;
+}
+
+.primary-button:hover {
+  background: #254fd0;
+}
+
+.primary-button:disabled {
+  border-color: #22b982;
+  background: #22b982;
+  cursor: not-allowed;
+}
+
+.primary-button:active,
+.secondary-button:active {
+  transform: translateY(1px);
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+  margin-bottom: 19px;
+}
+
+.metric-card {
+  min-width: 0;
+  padding: 17px 17px 15px;
+  border: 1px solid #e8edf3;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.metric-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: #7c899c;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.metric-icon {
+  display: grid;
+  width: 29px;
+  height: 29px;
+  flex: 0 0 29px;
+  place-items: center;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.metric-icon.green {
+  background: #e6f8f0;
+  color: #159b69;
+}
+
+.metric-icon.blue {
+  background: #eaf0ff;
+  color: #315fe8;
+}
+
+.metric-icon.purple {
+  background: #f1eaff;
+  color: #8c59d8;
+}
+
+.metric-icon.amber {
+  background: #fff3df;
+  color: #b98220;
+  font-size: 9px;
+}
+
+.metric-value {
+  margin-top: 13px;
+  color: #202c3c;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 29px;
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+
+.metric-value > span {
+  color: #9aa5b5;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.strategy-metric {
+  overflow: hidden;
+  margin-top: 15px;
+  color: #202c3c;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.metric-caption,
+.metric-footnote {
+  margin-top: 5px;
+  color: #9aa5b5;
+  font-size: 10px;
+}
+
+.progress-track {
+  overflow: hidden;
+  height: 4px;
+  margin-top: 12px;
+  border-radius: 5px;
+  background: #edf0f5;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: #22b982;
+  transition: width 200ms;
+}
+
+/* Shared panel and interactive-map presentation. */
+.panel {
+  min-width: 0;
+  border: 1px solid #e7ecf2;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.map-panel,
+.deliveries-panel {
+  padding: 20px;
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.panel-heading h2 {
+  margin: 0;
+  color: #253246;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.panel-heading p {
+  font-size: 11px;
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  border: 1px solid #e7ebf1;
+  border-radius: 5px;
+  color: #7e8b9d;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+}
+
+.live-badge > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #a7b0bd;
+}
+
+.live-badge.is-running {
+  border-color: #c9f0df;
+  background: #effbf5;
+  color: #159b69;
+}
+
+.live-badge.is-running > span {
+  background: #20b67e;
+  animation: pulse 1.2s infinite;
+}
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+  padding: 18px 0 12px;
+  color: #8490a1;
+  font-size: 9px;
+}
+
+.map-legend > span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.map-legend i {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+}
+
+.legend-parcel {
+  background: #e5a54b;
+}
+
+.legend-robot {
+  background: #315fe8;
+}
+
+.legend-building {
+  background: #d5b89d;
+}
+
+.map-viewport {
+  overflow: hidden;
+  border: 1px solid #d8e0e8;
+  border-radius: 7px;
+  background: #b9d99d;
+}
+
+.paterson-district-scene {
+  display: block;
+  width: 100%;
+  height: clamp(500px, 72vh, 900px);
+  touch-action: none;
+  outline: none;
+}
+
+.scene-loading {
+  display: grid;
+  width: 100%;
+  height: clamp(500px, 72vh, 900px);
+  place-items: center;
+  background: #b9d99d;
+  color: #486c3f;
+  font-size: 14px;
+}
+
+.paterson-district-scene canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Attribution and delivery queue use compact secondary text styles. */
+.map-attribution {
+  padding-top: 7px;
+  color: #8a96a7;
+  font-size: 10px;
+  text-align: right;
+}
+
+.map-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 13px;
+  color: #929eae;
+  font-size: 10px;
+}
+
+.map-footer > span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.deliveries-panel {
+  margin-top: 18px;
+}
+
+.count-badge {
+  padding: 5px 8px;
+  border: 1px solid #e6ebf2;
+  border-radius: 5px;
+  color: #738095;
+  font-size: 10px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 19px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+thead {
+  background: #f8f9fb;
+}
+
+th {
+  padding: 11px 13px;
+  color: #9aa5b5;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+}
+
+td {
+  padding: 13px;
+  border-bottom: 1px solid #eef1f5;
+  color: #5c697c;
+  font-size: 11px;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.parcel-id {
+  color: #4967b8;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.parcel-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 7px;
+  border-radius: 5px;
+  background: #f1f3f6;
+  color: #7c8798;
+  font-size: 9px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.parcel-status > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #9ca7b5;
+}
+
+.parcel-status.delivered {
+  background: #e9f9f1;
+  color: #159768;
+}
+
+.parcel-status.delivered > span {
+  background: #20b67e;
+}
+
+.parcel-status.in-transit {
+  background: #edf2ff;
+  color: #315fe8;
+}
+
+.parcel-status.in-transit > span {
+  background: #315fe8;
+}
+
+.app-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 20px 2px 0;
+  color: #9aa5b5;
+  font-size: 10px;
+}
+
+.footer-separator {
+  padding: 0 5px;
+  color: #c0c8d3;
+}
+
+/* Pulse used by the live indicator while the route is active. */
+@keyframes pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* Responsive layout: expand the page on wide screens and reduce columns and
+   scene height at tablet/mobile widths. */
+@media (min-width: 1500px) {
+  .main-content {
+    padding-right: 46px;
+    padding-left: 46px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .main-content {
+    padding-right: 22px;
+    padding-left: 22px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .paterson-district-scene {
+    height: clamp(420px, 65vh, 700px);
+  }
+
+  .scene-loading {
+    height: clamp(420px, 65vh, 700px);
+  }
+
+}
+
+@media (max-width: 650px) {
+  .main-content {
+    padding: 0 14px 18px;
+  }
+
+  .metrics-grid {
+    gap: 9px;
+  }
+
+  .metric-card {
+    padding: 13px;
+  }
+
+  .metric-top {
+    font-size: 10px;
+  }
+
+  .metric-value {
+    font-size: 26px;
+  }
+
+  .strategy-metric {
+    font-size: 18px;
+  }
+
+  .map-panel,
+  .deliveries-panel {
+    padding: 14px;
+  }
+
+  .map-legend {
+    gap: 9px;
+  }
+
+  .paterson-district-scene {
+    height: max(420px, 60vh);
+  }
+
+  .scene-loading {
+    height: max(420px, 60vh);
+  }
+
+  .map-attribution {
+    text-align: left;
+  }
+
+  .app-footer {
+    font-size: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
